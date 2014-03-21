@@ -1,0 +1,214 @@
+
+<html>
+<head>
+
+<title>Macaroni for C++</title>
+
+<link href='http://fonts.googleapis.com/css?family=Cardo:700' rel='stylesheet' type='text/css'>
+
+<link href="http://fonts.googleapis.com/css?family=Cabin&subset=latin" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+    background-color: #000080;
+}
+
+#box-of-box {
+    min-height:100%;
+    position:relative;
+    width:1024px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#box {
+
+    background-color: #F0F0F0;
+    border-radius: 15px;
+    min-height:100%;
+    width:1024px;
+    position:absolute;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#title {
+ font-family: 'Cardo', sans-serif;
+ color: #FEF219;
+    text-shadow:
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D
+
+
+        ;
+    font-size:500%;
+
+    /*text-align: center;*/
+    text-align: left;
+    text-indent:50px;
+
+}
+
+#line {
+    border-bottom: solid 15px FEF219;
+    height: 0px;
+    text-align: bottom;
+    position:relative;
+}
+
+
+
+#text-box {
+    width:100%;
+    position: relative;
+    left:0%;
+    /*border-radius: 15px;
+    background-color: #F0F0C8;*/
+
+}
+
+.menu-bar {
+    background-color:  FEF219;
+    text-align: center;
+    /*left:50%;*/
+}
+
+.menu {
+    background-color: white;
+    border-color: #007F0E;
+    border-style:solid;
+    border-spacing:2px;
+    border-bottom: solid 2px;
+    border-top: solid 2px ;
+    border-left: solid 2px ;
+    border-right: solid 2px ;
+    margin:2px;
+    padding:2px;
+    text-align: center;
+    box-shadow: 3px 3px 5px #888888;
+    /*left:50%;*/
+}
+
+.text-a {
+    float:left;
+    margin: 12px;
+    width:470px;
+    position: relative;
+    font-family: 'Cabin', sans-serif;
+    font-size:150%;
+    /*text-indent:50px;*/
+}
+
+.text-b {
+    float:right;
+    width:512px;
+    position: relative;
+    font-family: 'Cabin', sans-serif;
+    font-size:150%;
+    /*text-indent:50px;*/
+}
+
+.text-c {
+    margin: 12px;
+    position: relative;
+    font-family: 'Cabin', sans-serif;
+    font-size:150%;
+    /*text-indent:50px;*/
+}
+
+
+#maccy {
+    /*background:url('images/maccy.png');*/
+    float:right;
+    margin:15px;
+    padding:15px;
+    /*opacity:0.4;*/
+    position: relative;
+    text-align: right;
+    font-size:50%;
+    width:400px;
+/*-moz-box-shadow:    3px 3px 5px 6px #ccc;
+ -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc; */
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div id="box-of-box">
+<div id="box">
+
+    <div id="title">
+    Macaroni for C++
+    </div>
+    <div id="line">
+    </div>
+
+    <br/>
+
+
+
+    <div id="text-box">
+
+         <div class="text-b">
+
+                <div class="menu-bar">
+                   <a href="docs/index.html" class="menu">Documentation</a>
+                   <a href="download.html" class="menu">Download</a>
+                   <a href="license/index.html" class="menu">License</a>
+                </div>
+                    <div id="maccy">
+                        <image src="images/MaccySmall.png"/>
+                        <div>Nothing can kill Maccy, not even fire.</div>
+                    </div>
+
+            </div>
+
+        <div class="text-a">
+
+
+            <h1>
+            Welcome!
+            </h1>
+
+
+            <p>Macaroni for C++ parses a sleeker version of C++ that resembles
+            Java or C# and generates C++ code, managing the physical layout of
+            your project for you.</p>
+
+            <p>It also lets you to manipulate the model it creates using Lua
+            scripts so you can easily generate code.</p>
+
+            <h1>How it works</h1>
+
+            <p>
+            The following bit of Macaroni code defines a simple class called
+            "point".</p>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+
+
+
+</html>

@@ -1,0 +1,470 @@
+<~#include <header.mdoc> ~>
+
+<~lua
+
+~>
+
+        <div class="text-b" style="z-index:1">
+                <~#include <linkbar.mdoc> ~>
+
+                    <div id="maccy">
+                        <image src="images/MaccySmall.png"/>
+                        <div>Picture of Maccy playing Tic-Tac-Toe should go here.</div>
+                    </div>
+
+            </div>
+
+        <div class="text-a">
+
+            <h1>
+            The Tic Tac Toe Example
+            </h1>
+
+            <p>
+            The following single file of Macaroni code creates
+            multiple headers and implementation files, which
+            together form a library (or DLL) along with an
+            executable program (i.e. an exe file) which plays
+            Tic Tac Toe.</p>
+            </p>
+            <h2>Project System</h2>
+            <p>
+            Because Macaroni aims to simplify creating,
+            maintaining, and building large C++ projects, it
+            needs to operates with some knowledge of what an
+            entire project looks
+            like rather than just a single file at a time.
+            Thus it's entry point is always a Lua script
+            named "project.lua" which lives in the root of
+            a project directory and defines its project:
+            </p>
+
+            <~lua
+            showFileNoHide("example/project.lua");
+            ~>
+
+            <p>
+            This file does a few things.</p>
+            <p>
+            First off, it imports
+            a project in the group "Macaroni" named
+            "ProjectTemplates" with version "1". Macaroni has
+            it's own project system complete with repo inspired
+            by <a href="http://maven.apache.org/">Maven</a> and
+            <a href="http://fantom.org/">Fantom</a> which makes
+            it possible to import a project by name without
+            having to muck with it's file path, assuming it's
+            been correctly installed and configured. More on
+            that in a bit.
+            </p>
+            <p>
+            After the ProjectTemplates project is loaded,
+            Macaroni is able to run Lua scripts that were
+            defined there, including "SimpleProject" which
+            appropriately enough defines the function
+            "SimpleProject" which can then be used. Like it's
+            name implies, this allows us to create a simple
+            project which consists of a single library along
+            with some arbitrary number of executables (which
+            can be unit tests depending on the build tool).
+            Note that the Macaroni project system can be
+            used for more customized and complicated layouts
+            than this. The SimpleProject function is actually
+            just a bit of Lua code to try to emulate a
+            "build by convention" system for ease of use on
+            smaller projects. If you're curious how it
+            works <a href="https://github.com/TimSimpson/Macaroni/blob/master/Main/Libraries/Macaroni/ProjectTemplates/1/src/SimpleProject.lua">you
+            can view it's code here</a>.</p>
+            <p>
+            By default, the library name is simply "lib", but
+            this doesn't matter as libraries are grouped by
+            their projects which avoids namespace collissions,
+            and the names of the produced lib, so, or dll files
+            reflect this. However, as that can cause file path
+            issues at build time there's an ability to specify
+            a special short name with "libShotName". In
+            Windows this will translate to a lib called
+             "TicTacToeLib.dll".
+             </p>
+            <p>
+            Again, since one of Macaroni's jobs is keeping
+            you from mucking with files, it simply accepts
+            entire directories for where to find source code,
+            as well as for where to dump generated source (
+            "target").</p>
+            <p>
+            Finally, the library loads as it's dependencies
+            two other libraries- a simple project filled with
+            some standard C++ classes, and another one for
+            the <a href="http://www.boost.org/">Boost C++
+            Library</a> headers. Both of these libraries are
+            defined by Macaroni and are included with it.</p>
+            <p>
+            In the case of Boost, the user is required to add
+            the path to the Boost header files to a special
+            file Macaroni installed to the root of the Macaroni
+            repo directory. While Boost is not required to
+            use Macaroni, it does make using it (and C++)
+            even nicer. <a href="getting_started.html">
+            See "Getting Started" for information on how to
+            set this up.</a>
+            </p>
+
+
+            <h2>Macaroni Source Code</h2>
+            <p>
+            Next, let's look at the file "tictactoe.mcpp" which
+            will live in the "src" directory. Because it's in
+            Macaroni, you can call it anything you want.
+            </p>
+
+            <~lua
+            showFileWithToggle("example/src/tictactoe.mcpp", "tictactoe.mcpp");
+            ~>
+            <h3>The ~import statement and NodeSpace</h3>
+            <p>
+            First off, notice the "~import" statement.</p>
+            <~lua
+            showFileNoHide("example/src/tictactoe-import_chunk.txt");
+            ~>
+            <p>
+            Macaroni is not a real C++ compiler by any means
+            and thus does not need the full definition of a
+            class before it's code can make use of that class.
+            However, it does at the very least need to know the
+            names of classes or other items before they are
+            used in the definition of classes or functions.
+            That way it can associate it correctly to it's full
+            path (so it associated "Board" with "tictactoe::Board"
+            everywhere it sees it).</p>
+            <p>
+            Note that in Macaroni, unlike C++, there is only
+            a single namespace for everything. In C++, there
+            are actually different namespaces for structs /
+            classes and functions. So some legal (and perhaps
+            questionable) C++ code is
+            illegal in Macaroni.</p>
+            <p>
+            Officially, Macaroni calls it's namespace
+            "NodeSpace" and refers to any items it imports as
+            "nodes". So when it sees
+            "~import tictactoe::AlreadySet", it's all like
+            "cool, whatev's" and moves along with its life. If
+            "AlreadySet" appears in a function argument list,
+            it remember this, but doesn't do anything else
+            until later on, after everything has been parsed
+            when it begins generating code. At that point
+            it has already seen the definition of "AlreadySet"
+            (which appears later in the file) and knows it's
+            a class and knows what it's forward declaration
+            looks like as well as where it's header file is.
+            It then relies on the C++ compiler to make sure
+            everything works.</p>
+
+            <h3>The ~namespace directive</h3>
+            <~lua
+            showFileNoHide("example/src/namespace.txt");
+            ~>
+            <p>
+            It's possible to define namespaces in Macaroni
+            just like C++, using braces. Unlike C++ however
+            Macaroni can define multiple namespaces using double
+            colons. Additionally, if a namespace directive
+            starts with a tilde (implying Macaroni specific
+            functionality) and ends with a semicolon, it
+            tells Macaroni that all classes, functions etc
+            defined from that point on will be in the given
+            namespace.
+            </p>
+
+            <h3>How Macaroni generates code</h3>
+            <~lua
+            showFileNoHide("example/src/class_start.txt");
+            ~>
+            <p>
+            Macaroni does not generate expressions or statements
+            in C++ itself. Instead, it simply scoops up whole
+            blocks of text and dumps them directly into
+            the generated source.</p>
+            <p>
+            For example, when the class "Board" is defined,
+            the "~block" directive tells Macaroni to just shove
+            the code in the braces into the header file. When
+            it does, it inserts a "#line" directive containing
+            the Macaroni source file and line number where
+            it got the block of code. This means if the code
+            doesn't compile, the error message will reference
+            the exact line / column of the Macaroni source file
+            where the error occurred rather than the generated
+            file. The vast majority of the time, this works
+            flawlessly, and makes it possible to even step
+            around Macaroni code using the debugger.</p>
+            <p>
+            The "~block" directive is also a get out of jail
+            free card for Macaroni, in that it allows you to
+            escape it's confines and write any C++ code you
+            need in the event Macaroni can't handle some
+            construct.
+            </p>
+            <p>
+            Next up, there's Board's constructor:
+            </p>
+            <~lua
+            showFileNoHide("example/src/ctor.txt");
+            ~>
+            <p>
+            You might have noticed that Macaroni puts the
+            access keyword public right before each member,
+            unlike C++ which allows you to specify the access
+            keyword followed by a colon before several members.
+            This is optional and the C++ technique will work
+            as well. I find that grouping member definitions
+            by access makes less sense when the functions are
+            also being defined and prefer the Java / C# style.
+            However, in the spirit of C++ feel free to go with
+            the style you believe is appropriate.
+            </p>
+            <p>
+            As is clear by now Macaroni is also capable
+            of evaluating a lot of C++ constructs such as
+            function definitions and generating the code for
+            you. For example, here's a method definition:
+            </p>
+            <~lua showFileNoHide("example/src/method.txt"); ~>
+            <p>
+            Macaroni will correctly write out the function
+            prototype into the class's interface in the header
+            file, taking care to fully qualify the return
+            type "boost::optional<bool>" to avoid using
+            directives in the header file and prevent namespace
+            pollution. However, it will add the using
+            statements to the ".cpp" file which enables the
+            Macaroni source code to not care at all about fully
+            spelling out "boost" a dozen times, as Macaroni
+            handles the declarations in the header and in the
+            code block itself can assume that the
+            namespace is in use.
+            </p>
+
+            <h3>Global Friends</h3>
+
+            <p>
+            Macaroni allows you to define free standing
+            functions as part of a class using the ~global
+            keyword, which gaurantees
+            that they will end up living with that classes
+            header and implementation file. The "~friend"
+            keyword also specifies that the function should
+            be a friend of the class. For example:</p>
+            <~lua showFileNoHide("example/src/global.txt"); ~>
+            <p>
+            Here a free standing function is defined
+            which allows instances of the Board class to
+            be passed through to an output stream.</p>
+
+
+            <h3>~hidden access</h3>
+            <p>
+            Because Macaroni is already generating code, i
+            t can also do some things that
+            would normally be considered too burdensome or
+            error-prone in typical C++.</p>
+            <p>
+            An example of this is the new "~hidden" access
+            keyword:</p>
+
+            <p>
+            This isn't really adding anything new to C++,
+            but rather tells Macaroni to add this method
+            to only the implementation files copy of the
+            header.</p>
+            <p>You see, Macaroni generates two headers, or
+            interfaces, for each class. One lives in its
+            own .h file. The other lives right where the
+            .cpp file would normally #include it's
+            corresponding .h file. </p>
+            <p>
+            Have you ever wanted to add a single helper method
+            or function to a class, but didn't want to risk
+            having to recompile the fifty other classes which
+            depended on it? This is possible in Macaroni thanks
+            to ~hidden members which allow you to add methods
+            to a class that don't become part of its interface.
+            </p>
+            <p>
+            If you're freaking out just reading this, then take
+            a deep breath and calm down. This technique works
+            on every compiler yet used with Macaroni and fixes
+            a subtle flaw in C++, which is that private methods
+            always form part of a class's public interface even
+            if they aren't used by inlined or template
+            functions.</p>
+            <p>
+            By the way, because there is still a need for
+            traditional private methods, Macaroni supports
+            those too. :) </p>
+
+            <h3>The ~unit directive</h3>
+            <p>
+            Finally, at the end of the code there's a directive
+            called "~unit":</p>
+            <~lua showFileNoHide("example/src/unit.txt"); ~>
+            <p>
+            Remember how Macaroni has it's
+            own Project system? Basically this directive tells
+            Macaroni to create a "unit" which takes it's name
+            from translation unit and consists of two files,
+            a header and an implementation file. Normally,
+            the later would become a simple object file during
+            build time, but argument "type=exe" tells Macaroni
+            to go ahead and build a runnable binary from it
+            whose name will be "ttt.exe" or Windows and just
+            "ttt" on Linux.</p>
+            <p>
+            It is possible to define classes within units in
+            order to group them into the same resulting
+            header and implementation files. It's also possible
+            to stick a chunk of code into either the .h or .cpp
+            file as shown above, which is how the main class
+            comes to exist.</p>
+            <p>
+            Using "~unit" it is possible to define multiple
+            executables in a single Macaroni file. However in
+            larger projects it's probably best to make a single
+            Macaroni file for each unit, and in some cases
+            resort to typical C++ code (Macaroni will
+            automatically pick up any files ending in .c or
+            .cpp it finds in the source directories you give
+            it and turn them into units).</p>
+
+
+
+            <h2>The Generated Source</h2>
+
+            <p>Below is a listing of all of the files generated
+            by Macaroni which end up in the the "target"
+            directory specified by project.lua
+            when "macaroni generate" is specified at the command
+            line.</p>
+
+            <~lua
+            showFileWithToggle("example/target/ttt.cpp", "ttt.cpp");
+            ~>
+            <~lua
+            showFileWithToggle("example/target/Config_TicTacToeLib.h", "Config_TicTacToeLib.h");
+            ~>
+            <~lua
+            showFileWithToggle("example/target/tictactoe/AlreadySet.h", "tictactoe/AlreadySet.h");
+            ~>
+            <~lua
+            showFileWithToggle("example/target/tictactoe/AlreadySet.cpp", "tictactoe/AlreadySet.cpp");
+            ~>
+            <~lua
+            showFileWithToggle("example/target/tictactoe/BadLocation.h", "tictactoe/BadLocation.h");
+            ~>
+            <~lua
+            showFileWithToggle("example/target/tictactoe/BadLocation.cpp", "tictactoe/BadLocation.cpp");
+            ~>
+            <~lua
+            showFileWithToggle("example/target/tictactoe/Board.h", "tictactoe/Board.h");
+            ~>
+            <~lua
+            showFileWithToggle("example/target/tictactoe/Board.cpp", "tictactoe/Board.cpp");
+            ~>
+
+            <p>
+            One thing you may notice is the ugly compiler macro
+            "MACARONI_LIB_DECL_Macaroni_46_Examples___TicTacToe___DEV___lib".
+            What the $@&*!? is that?!</p>
+            <p>
+            Basically, it's something necessary to produce
+            a DLL in Microsoft Windows. As crazy as it sounds,
+            this is something you will find in all major
+            multiplatform C and C++ libraries, from pure Ansi C
+            code like Lua to the cutting edge C++ code in
+            Boost. In fact, Macaroni piggybacks
+            off compiler flags the Boost config header libraries
+            define to make this a bit more consistent.</p>
+            <p>
+            By the way, if the Boost headers are *not* included
+            as a dependency of a project, the file
+            "Config_TicTacToeLib.h" above will not be generated
+            and the ugly compiler macro will dissappear.</p>
+            <p>
+            A related question might be why the macro is so
+            ugly. This is by decision as a long name is needed
+            to avoid namespace collisions. The reality is many
+            projects pick short cute names and then feel
+            entitled to pollute the global namespace by
+            adding a three letter prefix to everything, so
+            their macros end up looking simple, like "LUA_API".
+            Given how stable and wonderful Lua is, it's probably
+            okay to let it do that. However, since Macaroni
+            is a code generator and thus no human being is
+            going to need to deal with the nasty name (except
+            maybe a few times as part of a build script) it
+            makes sense to give it a long name to reduce the
+            potential of a namespace collision. This also allows
+            Macaroni's users to easily make DLLs without
+            much fuss.
+            </p>
+
+            <h3>Tying into a Build System</h3>
+            <p>
+            Because Macaroni knows about a program's <a href="physical_vs_logical_structure.html">physical
+            structure</a> it has the ability to generate
+            build scripts as well (this is optional).
+            </p>
+            <p>
+            So, the SimpleProject function in project.lua
+            generates one more file produced by
+            Macaroni: jamroot.jam, which is used by Boost Build:
+            </p>
+            <~lua
+            showFileWithToggle("example/target/jamroot.jam", "jamroot.jam");
+            ~>
+            <p>
+            Note that while this file builds things defined in
+            Macaroni code, Macaroni will also add any stray .cpp
+            files it finds in the src directory to the main
+            library it creates (there are ways to allow Macaroni
+            to add pure .cpp files you write to a project as
+            executable programs instead, but that's outside the
+            scope of this example).
+            </p>
+            <p>
+            Macaroni will execute Boost Build for this project
+            if "macaroni build" is typed on the command line
+            from the same directory at project.lua. Before
+            it begins, the "build" will also execute "generate".
+            </p>
+
+
+            <h2>Installing the Project</h2>
+
+            <p>
+            It's unlikely we'll need to use the code from the
+            Tic-Tac-Toe example from another project, but
+            if we did, we could allow Macaroni to install it
+            by running "macaroni install" from the command
+            line.</p>
+            <p>
+            The "install" phase of Macaroni, like the other
+            phases, are defined by the project.lua files.
+            However, the typical behavior (supported by the
+            SimpleProject function) is to copy the entirety
+            of the directory to the Macaroni repo
+            directory at "Macaroni.Examples/TicTacToe/DEV"
+            (group name / project name / version).</p>
+            <p>
+            Another project could then use it by running
+            the function
+            "load("Macaroni.Examples", "TicTacToe", "DEV"):Target("lib")".
+            </p>
+
+
+
+        </div>
+
+
+<~#include <footer.mdoc> ~>

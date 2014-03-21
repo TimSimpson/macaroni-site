@@ -1,0 +1,6 @@
+class Board {
+    ~block "h" {
+        private:   boost::optional<bool> spots[9];
+        public: static const bool X = true;
+        public: static const bool O = false;
+    }

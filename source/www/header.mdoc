@@ -1,0 +1,115 @@
+
+<html>
+<head>
+
+<title>Macaroni for C++</title>
+
+
+<link rel="stylesheet" href="<~#path <macaroni.css> ~>" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Cardo:700' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Cabin&subset=latin" rel="stylesheet" type="text/css">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script language=javascript type="text/javascript">
+        function toggle(id) {
+            var codeDiv = document.getElementById("code_" + id);
+            var linkShow = document.getElementById("linkShow_" + id);
+            var linkHide = document.getElementById("linkHide_" + id)
+            if (codeDiv.style.display == "block") {
+                codeDiv.style.display = "none";
+                linkShow.style.display = "block";
+                linkHide.style.display = "none";
+            } else {
+                codeDiv.style.display="block";
+                linkShow.style.display = "none";
+                linkHide.style.display = "block";
+            }
+        }
+    </script>
+
+<style>
+
+body {
+    background-color: #000080;
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div id="box-of-box">
+<div id="box">
+
+    <a href="https://github.com/TimSimpson/Macaroni"><img style="position: absolute; top: 0; right: 0; border: 0;" src="github-ribbon.png" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+    <div class="title">
+    <a href="<~#path <index.html> ~>">Macaroni for C++</a>
+    </div>
+    <div id="line">
+    </div>
+
+    <br/>
+
+
+
+    <div id="text-box">
+
+
+
+<~lua
+
+local dir = Macaroni.IO.Path.New("")
+
+function newPath(suffix)
+    return dir:NewPathForceSlash(suffix):CreateWithCurrentAsRoot();
+end
+
+showFileNoHide = function(file)
+    local p = newPath(file)
+    Site.mcppFileToHtml(p);
+end
+
+
+idIndex = 0
+
+
+showFileWithToggle = function(file, visibleName)
+    idIndex = idIndex + 1
+    id = "code_" .. tostring(idIndex)
+    writer:WriteLine(
+    [[<div id="linkShow_]] .. tostring(idIndex)
+    .. [[" style="display:block"><a href="javascript:toggle(']]
+    .. tostring(idIndex)
+    .. [[')">Show ]] .. visibleName .. [[</a></div>
+        <div id="linkHide_]] .. tostring(idIndex)
+    .. [[" style="display:none"><a href="javascript:toggle(']]
+    .. tostring(idIndex)
+    .. [[')">Hide ]] .. visibleName .. [[</a></div>
+        <div id="]] .. id .. [[" style="display:none">]]);
+    local p = newPath(file)
+    Site.mcppFileToHtml(p);
+    writer:WriteLine([[</div><br/>]]);
+end
+
+
+function showFileFromInstalledProject(g, n, v, f)
+    idIndex = idIndex + 1
+    id = "code_" .. tostring(idIndex)
+    writer:WriteLine(
+    [[<div id="linkShow_]] .. tostring(idIndex)
+    .. [[" style="display:block"><a href="javascript:toggle(']]
+    .. tostring(idIndex)
+    .. [[')">Show ]] .. f .. [[</a></div>
+        <div id="linkHide_]] .. tostring(idIndex)
+    .. [[" style="display:none"><a href="javascript:toggle(']]
+    .. tostring(idIndex)
+    .. [[')">Hide ]] .. f .. [[</a></div>
+        <div id="]] .. id .. [[" style="display:none">]]);
+    local pointMcpp = Site.pathToProjectFile(
+        {Group=g, Name=n, Version=v},
+        f);
+    Site.mcppFileToHtml(pointMcpp);
+    writer:WriteLine([[</div><br/>]]);
+end
+~>

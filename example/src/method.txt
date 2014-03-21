@@ -1,0 +1,5 @@
+    public optional<bool> get(const unsigned int r,
+                              const unsigned int c) const {
+        BOOST_ASSERT(r < 3 && c < 3);
+        return spots[r * 3 + c];
+    }

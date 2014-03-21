@@ -1,0 +1,84 @@
+<~#include <header.mdoc> ~>
+
+<~lua
+
+~>
+
+        <div class="text-b" style="z-index:1">
+                <~#include <linkbar.mdoc> ~>
+
+                    <div id="maccy">
+                        <image src="images/MaccySmall.png"/>
+                        <div>Nothing can kill Maccy, not even fire.</div>
+                    </div>
+
+            </div>
+
+        <div class="text-a">
+
+            <h1>
+            Welcome!
+            </h1>
+
+
+            <p>Macaroni for C++ parses a sleeker version of C++ that resembles
+            Java or C# and generates C++ code, managing the physical structure of
+            your project for you.</p>
+
+            <p>It also lets you to manipulate the model it creates using Lua
+            scripts so you can easily generate code.</p>
+
+            <h2>A Simple Example</h2>
+
+            <p>
+            The following single file of Macaroni code creates
+            a class named "Calculator" with it's own .h and .cpp
+            files which goes into a library (or DLL). It also
+            creates two executable programs (i.e. exe files)
+            to add and subtract numbers.</p>
+
+
+            <~lua
+            showFileNoHide("example/src/calculator.mcpp");
+            ~>
+
+            <p>
+            There's no need for header files along or other
+            anachronisms such as include guards to do simple
+            things. Macaroni lets you think about your code
+            in terms of nodes to be imported rather than
+            header files to be included, letting you focus
+            on the logical structure of your program.</p>
+            <p>
+            Because Macaroni copies the full
+            blocks of C++ code you give it into the code it
+            generates (and uses the #line directive)
+            compiler error messages and debuggers call out
+            the spot you made a mistake in
+            the Macaroni source code instead of forcing
+            you to reason about the generated source.
+            </p>
+            <p>
+            Yet Macaroni is about more than just avoiding
+            the need to write header files.
+            It allows you to add metadata to your
+            source code which it can use to
+            generate more code (such as glue for scripting
+            languages) or even build scripts
+            (CMake and Boost Build support is included out of
+            the box). These powerful tools enable you to tackle
+            the classic problems with the physical structure
+            of C++ code as well as the lack of
+            readily available runtime reflection mechanisms.
+            </p>
+
+            <p>
+            Curious?
+            <a href="quick_start.html">Click here to get started!</a>
+            </p>
+            <br/>
+            <br/>
+        </div>
+
+
+<~#include <footer.mdoc> ~>

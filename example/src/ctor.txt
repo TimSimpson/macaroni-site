@@ -1,0 +1,5 @@
+class Board {
+    ...
+    public Board() {
+        for (int i = 0; i < 9; ++ i) { spots[i] = boost::none; }
+    }

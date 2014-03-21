@@ -1,0 +1,36 @@
+~import Calculator;
+~import std::cin;
+~import std::cout;
+~import std::ostream;
+
+class Calculator {
+    private int number;
+
+    public:
+        Calculator(int number) : number(number) {}
+        void add(int other) { number += other; }
+        int result() { return number; }
+        void subtract(inCat other) { number -= other; }
+};
+
+~unit "add" type=exe { ~block "cpp" {
+        int main(int argc, char ** argv) {
+            int n1, n2;
+            cout << "Number 1? "; cin >> n1;
+            cout << "Number 2? "; cin >> n2;
+            Calculator c(n1);
+            c.add(n2);
+            cout << c.result() << "\n";
+        }
+}   }
+
+~unit "subtract" type=exe { ~block "cpp" {
+        int main(int argc, char ** argv) {
+            int n1, n2;
+            cout << "Number 1? "; cin >> n1;
+            cout << "Number 2? "; cin >> n2;
+            Calculator c(n1);
+            c.subtract(n2);
+            cout << c.result() << "\n";
+        }
+}   }
