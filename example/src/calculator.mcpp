@@ -10,7 +10,7 @@ class Calculator {
         Calculator(int number) : number(number) {}
         void add(int other) { number += other; }
         int result() { return number; }
-        void subtract(inCat other) { number -= other; }
+        void subtract(int other) { number -= other; }
 };
 
 ~unit "add" type=exe { ~block "cpp" {
