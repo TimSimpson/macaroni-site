@@ -1,0 +1,145 @@
+~import tictactoe::AlreadySet;
+~import BOOST_ASSERT;
+~import tictactoe::Board;
+~import tictactoe::BadLocation;
+~import std::exception;
+~import boost::optional;
+~import std::ostream;
+
+~namespace tictactoe;
+
+class Board {
+    ~block "h" {
+        private:   boost::optional<bool> spots[9];
+        public: static const bool X = true;
+        public: static const bool O = false;
+    }
+
+    public Board() {
+        for (int i = 0; i < 9; ++ i) { spots[i] = boost::none; }
+    }
+
+    public ~global ~friend ostream & operator<<(
+        ostream & out, const Board & board) {
+        for (unsigned int r = 0; r < 3; ++r) {
+            out << "[ ";
+            for (unsigned int c = 0; c < 3; ++ c) {
+                out << (board.get(r, c) ? (
+                    board.get(r, c).get() ? "X" : "O")
+                    : (" ")) << " ";
+            }
+            out << "]\n";
+        }
+        return out;
+    }
+
+    public bool has_free_spots() const {
+        for (int i = 0; i < 9; ++ i) {
+            if (!spots[i]) { return true; } }
+    }
+
+    public optional<bool> get(const unsigned int r,
+                              const unsigned int c) const {
+        BOOST_ASSERT(r < 3 && c < 3);
+        return spots[r * 3 + c];
+    }
+
+    ~hidden bool matches(const unsigned int r,
+                 const unsigned int c, const bool value) const {
+        BOOST_ASSERT(r < 3 && c < 3);
+        return spots[r * 3 + c]
+               && spots[r * 3 + c].get() == value;
+    }
+
+    public void set(const unsigned int r, const unsigned int c,
+                    const bool value) {
+        if (r >= 3 || c >= 3) { throw BadLocation(); }
+        else if (spots[r * 3 + c]) { throw AlreadySet(); }
+        else { spots[r * 3 + c] = value; }
+    }
+
+    ~hidden bool winner_is(bool v) const {
+        return (   (matches(0, 0, v) && matches(0, 1, v)
+                    && matches(0, 2, v))
+                || (matches(1, 0, v) && matches(1, 1, v)
+                    && matches(1, 2, v))
+                || (matches(2, 0, v) && matches(2, 1, v)
+                    && matches(2, 2, v))
+                || (matches(0, 0, v) && matches(1, 0, v)
+                    && matches(2, 0, v))
+                || (matches(0, 1, v) && matches(1, 1, v)
+                    && matches(2, 1, v))
+                || (matches(0, 2, v) && matches(1, 2, v)
+                    && matches(2, 2, v))
+                || (matches(0, 0, v) && matches(1, 1, v)
+                    && matches(2, 2, v))
+                || (matches(0, 2, v) && matches(1, 1, v)
+                    && matches(2, 0, v)) );
+    }
+
+    public optional<bool> winner() const {
+        if (winner_is(X)) { return X; }
+        else if (winner_is(O)) { return O; }
+        else { return boost::none; }
+    }
+};
+
+class AlreadySet : public virtual exception {
+    public virtual const char * what() const BOOST_NOEXCEPT
+    {
+        return "Location already taken.";
+    }
+};
+
+class BadLocation : public virtual exception {
+    public virtual const char * what() const BOOST_NOEXCEPT
+    {
+        return "Bad location for X or O.";
+    }
+};
+
+~unit "ttt" type=exe
+{
+    ~import std::cin;
+    ~import std::cout;
+
+    ~block "cpp"
+    {
+        int main(int argc, char ** argv)
+        {
+            Board board;
+            int turnCount = 0;
+            while (true) {
+                cout << "~ ROUND " << ++ turnCount << " ~\n";
+                for (unsigned int i = 1; i <= 2; ++ i) {
+                    cout << "Player " << i << "'s turn:\n";
+                    cout << board;
+                    try {
+                        cout << "Which row?\n";
+                        unsigned int r;
+                        cin >> r;
+                        cout << "Which column?\n";
+                        unsigned int c;
+                        cin >> c;
+                        board.set(r, c,
+                                  i == 1 ? Board::X : Board::O);
+                    } catch(const AlreadySet) {
+                        cout << "Spot is already taken.\n";
+                        i -= 1;
+                    } catch(const BadLocation) {
+                        cout << "That spot is out of bounds.\n";
+                        i -= 1;
+                    }
+                    if (board.winner()) {
+                        cout << board;
+                        cout << "Player " <<
+                          (tictactoe::Board::X == board.winner()
+                           ? "1" : "2") << " wins the game!\n";
+                        return 0;
+                    }
+                }
+                cout << "\n";
+            }
+        }
+    }
+}

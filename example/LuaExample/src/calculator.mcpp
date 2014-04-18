@@ -1,0 +1,54 @@
+~import Calculator;
+~import std::cin;
+~import std::cout;
+~import std::ostream;
+~import Macaroni::Lua::LuaClass;
+~import Macaroni::Lua::LuaFunction;
+~import Macaroni::Lua::LuaProperty;
+
+class Calculator{};
+typedef boost::shared_ptr<Calculator> CalculatorPtr
+    @LuaClass [ SameAsNode = Calculator ];
+
+class Calculator @LuaClass [ ReferenceType = CalculatorPtr ] {
+    private int n;
+
+    public:
+        Calculator(int n) : n(n) {}
+        void add(int n2) @LuaFunction "add" { n += n2; }
+        int result() @LuaFunction "result" { return n; }
+        void subtract(int n2) @LuaFunction "subtract" { n -= n2; }
+};
+
+~unit "add" type=exe { ~block "cpp" {
+        int main(int argc, char ** argv) {
+            int n1, n2;
+            cout << "Number 1? "; cin >> n1;
+            cout << "Number 2? "; cin >> n2;
+            Calculator c(n1);
+            c.add(n2);
+            cout << c.result() << "\n";
+        }
+}   }
+
+~unit "subtract" type=exe { ~block "cpp" {
+        int main(int argc, char ** argv) {
+            int n1, n2;
+            cout << "Number 1? "; cin >> n1;
+            cout << "Number 2? "; cin >> n2;
+            Calculator c(n1);
+            c.subtract(n2);
+            cout << c.result() << "\n";
+        }
+}   }
+
+~unit "repl" type=exe { ~block "cpp" {
+        #include <lauxlib.h>
+        #include <lualib.h>
+
+        int main(int argc, char ** argv) {
+            lua_State * L = luaL_newstate();
+
+            lua_call()
+        }
+}   }

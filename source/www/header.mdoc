@@ -59,7 +59,8 @@ body {
 
 <~lua
 
-local dir = Macaroni.IO.Path.New("")
+local Path = require "Macaroni.IO.Path"
+local dir = Path.New("")
 
 function newPath(suffix)
     return dir:NewPathForceSlash(suffix):CreateWithCurrentAsRoot();

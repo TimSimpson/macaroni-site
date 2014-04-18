@@ -1,0 +1,2 @@
+class BOOST_ASSERT{ ~hfile=<boost/assert.hpp> };
+class boost::optional{ ~hfile=<boost/optional.hpp> };

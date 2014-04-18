@@ -8,7 +8,7 @@
                 <~#include <linkbar.mdoc> ~>
 
                     <div id="maccy">
-                        <image src="images/MaccySmall.png"/>
+                        <image src="images/MaccyHangingOutWithAQuokkaBT.png"/>
                         <div>Picture of Maccy playing Tic-Tac-Toe should go here.</div>
                     </div>
 
@@ -119,13 +119,13 @@
             </p>
 
             <~lua
-            showFileWithToggle("example/src/tictactoe.mcpp", "tictactoe.mcpp");
+            showFileWithToggle("example/TicTacToe/src/tictactoe.mcpp", "tictactoe.mcpp");
             ~>
             <h3>The ~import statement and NodeSpace</h3>
             <p>
             First off, notice the "~import" statement.</p>
             <~lua
-            showFileNoHide("example/src/tictactoe-import_chunk.txt");
+            showFileNoHide("example/TicTacToe/src/tictactoe-import_chunk.txt");
             ~>
             <p>
             Macaroni is not a real C++ compiler by any means
@@ -163,7 +163,7 @@
 
             <h3>The ~namespace directive</h3>
             <~lua
-            showFileNoHide("example/src/namespace.txt");
+            showFileNoHide("example/Stuff/src/namespace.txt");
             ~>
             <p>
             It's possible to define namespaces in Macaroni
@@ -179,7 +179,7 @@
 
             <h3>How Macaroni generates code</h3>
             <~lua
-            showFileNoHide("example/src/class_start.txt");
+            showFileNoHide("example/Stuff/src/class_start.txt");
             ~>
             <p>
             Macaroni does not generate expressions or statements
@@ -210,7 +210,7 @@
             Next up, there's Board's constructor:
             </p>
             <~lua
-            showFileNoHide("example/src/ctor.txt");
+            showFileNoHide("example/Stuff/src/ctor.txt");
             ~>
             <p>
             You might have noticed that Macaroni puts the
@@ -230,7 +230,7 @@
             function definitions and generating the code for
             you. For example, here's a method definition:
             </p>
-            <~lua showFileNoHide("example/src/method.txt"); ~>
+            <~lua showFileNoHide("example/Stuff/src/method.txt"); ~>
             <p>
             Macaroni will correctly write out the function
             prototype into the class's interface in the header
@@ -256,7 +256,7 @@
             header and implementation file. The "~friend"
             keyword also specifies that the function should
             be a friend of the class. For example:</p>
-            <~lua showFileNoHide("example/src/global.txt"); ~>
+            <~lua showFileNoHide("example/Stuff/src/global.txt"); ~>
             <p>
             Here a free standing function is defined
             which allows instances of the Board class to
@@ -308,7 +308,7 @@
             <p>
             Finally, at the end of the code there's a directive
             called "~unit":</p>
-            <~lua showFileNoHide("example/src/unit.txt"); ~>
+            <~lua showFileNoHide("example/Stuff/src/unit.txt"); ~>
             <p>
             Remember how Macaroni has it's
             own Project system? Basically this directive tells
@@ -348,28 +348,28 @@
             line.</p>
 
             <~lua
-            showFileWithToggle("example/target/ttt.cpp", "ttt.cpp");
+            showFileWithToggle("example/TicTacToe/target/ttt.cpp", "ttt.cpp");
             ~>
             <~lua
             showFileWithToggle("example/target/Config_TicTacToeLib.h", "Config_TicTacToeLib.h");
             ~>
             <~lua
-            showFileWithToggle("example/target/tictactoe/AlreadySet.h", "tictactoe/AlreadySet.h");
+            showFileWithToggle("example/TicTacToe/target/tictactoe/AlreadySet.h", "tictactoe/AlreadySet.h");
             ~>
             <~lua
-            showFileWithToggle("example/target/tictactoe/AlreadySet.cpp", "tictactoe/AlreadySet.cpp");
+            showFileWithToggle("example/TicTacToe/target/tictactoe/AlreadySet.cpp", "tictactoe/AlreadySet.cpp");
             ~>
             <~lua
-            showFileWithToggle("example/target/tictactoe/BadLocation.h", "tictactoe/BadLocation.h");
+            showFileWithToggle("example/TicTacToe/target/tictactoe/BadLocation.h", "tictactoe/BadLocation.h");
             ~>
             <~lua
-            showFileWithToggle("example/target/tictactoe/BadLocation.cpp", "tictactoe/BadLocation.cpp");
+            showFileWithToggle("example/TicTacToe/target/tictactoe/BadLocation.cpp", "tictactoe/BadLocation.cpp");
             ~>
             <~lua
-            showFileWithToggle("example/target/tictactoe/Board.h", "tictactoe/Board.h");
+            showFileWithToggle("example/TicTacToe/target/tictactoe/Board.h", "tictactoe/Board.h");
             ~>
             <~lua
-            showFileWithToggle("example/target/tictactoe/Board.cpp", "tictactoe/Board.cpp");
+            showFileWithToggle("example/TicTacToe/target/tictactoe/Board.cpp", "tictactoe/Board.cpp");
             ~>
 
             <p>

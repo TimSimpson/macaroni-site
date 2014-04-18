@@ -1,0 +1,10 @@
+~unit "ttt" type=exe
+{
+    ~import std::cin;
+    ~import std::cout;
+
+    ~block "cpp"
+    {
+        int main(int argc, char ** argv)
+        {
+            ...

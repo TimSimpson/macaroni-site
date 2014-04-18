@@ -1,5 +1,8 @@
 require "os"
-require "Macaroni.IO.Path"
+local Path = require "Macaroni.IO.Path"
+local latestVersion = "0.2.2"
+import("Macaroni", "Macaroni.Release", latestVersion)
+
 
 sources = { "source/examples", "source/www" }
 outputPath = "target"
@@ -19,7 +22,7 @@ local lib = project:Library{
 
 
 
-local dir = Macaroni.IO.Path.New(getWorkingDirectory())
+local dir = Path.New(getWorkingDirectory())
 
 function newPath(suffix)
     return dir:NewPathForceSlash(suffix):CreateWithCurrentAsRoot();
