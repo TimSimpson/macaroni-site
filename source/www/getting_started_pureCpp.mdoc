@@ -1,0 +1,56 @@
+<~#include <header.mdoc> ~>
+
+<~lua
+
+~>
+
+        <div class="text-b" style="z-index:1">
+                <~#include <linkbar.mdoc> ~>
+
+                    <div id="maccy">
+                        <image src="images/MaccySmall.png"/>
+                        <div>Let us get started.</div>
+                    </div>
+
+            </div>
+
+        <div class="text-a">
+
+            <h1>
+            <i class="fa fa-question-circle"></i>Getting Started on Other Platforms
+            </h1>
+
+            <p>
+            The only way to use Macaroni on Linux or other platforms is
+            currently to build it yourself (Debian packages are planned for
+            the future).</p>
+            <ul>
+
+            <h2>Compiling the Code</h2>
+            <p>
+            Head to the <a href="download.html">downloads page</a>
+            and grab a "PureCpp" distribution of Macaroni.
+            This is a version of the Macaroni code which is
+            pure C++ source code. Unzip the files to some directory somewhere.
+            </p>
+            <p>
+            Next, install the following dependencies:
+            </p>
+            <ul>
+            <li>Boost Build</li>
+            <li>Boost FileSystem</li>
+            <li>Boost Regex</li>
+            </ul>
+            <p>
+            If all goes well, you should be able to build Macaroni by running
+            </p>
+             <pre>bjam exe</pre>
+            <p>
+            If anything goes wrong, additional instructions are in the file
+            "jamroot.jam".</p>
+            <p>
+            The executable will be waiting for you in the exe directory.</p>
+        </div>
+
+
+<~#include <footer.mdoc> ~>

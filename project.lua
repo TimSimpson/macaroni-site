@@ -1,7 +1,5 @@
 require "os"
 local Path = require "Macaroni.IO.Path"
-local latestVersion = "0.2.2"
-import("Macaroni", "Macaroni.Release", latestVersion)
 
 
 sources = { "source/examples", "source/www" }
