@@ -1,0 +1,448 @@
+/*
+ * default.css_t
+ * ~~~~~~~~~~~~~
+ *
+ * Modified version of "Sphinx stylesheet -- default theme"
+ *
+ * :copyright: Original theme Copyright 2007-2014 by the Sphinx team,
+ *             see AUTHORS. Uncool modifications copyright 2014 Tim Simpson.
+ * :license: BSD, see LICENSE for details.
+ *
+ */
+
+@import url("basic.css");
+
+/* -- page layout ----------------------------------------------------------- */
+
+body {
+    font-family: sans-serif;
+    font-size: 100%;
+    background-color:rgb(0,0,64);
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+div.document {
+    /* Side bar */
+    background-color: #1c4e63;
+}
+
+div.documentwrapper {
+    float: left;
+    width: 100%;
+    background-color:rgb(0,0,128);
+}
+
+div.bodywrapper {
+    margin: 0 0 0 230px;
+}
+
+div.body {
+    background-color: #F0F0F0;
+    color: #000000;
+    padding: 0 20px 30px 20px;
+
+    font-family: 'Cabin', sans-serif;
+    font-size:100%;
+
+
+}
+
+div.footer {
+    color: #ffffff;
+    width: 100%;
+    padding: 9px 0 9px 0;
+    text-align: center;
+    font-size: 75%;
+}
+
+div.footer a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+div.related {
+    background-color:  FEF219;
+    line-height: 30px;
+    color: #ffffff;
+}
+
+div.related a {
+    color: #ffffff;
+}
+
+div.related ul {
+    font-family: 'Cardo', sans-serif;
+ color: #FEF219;
+    text-shadow:
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D
+
+
+        ;
+    font-size:100%;
+
+    text-decoration: none;
+}
+
+
+#macaroni-for-c h1 {
+    font-family: 'Cardo', sans-serif;
+
+    color: #FEF219;
+    text-shadow:
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D,
+        0 0 0.1em #00127D, 0 0 0.1em #00127D
+
+
+        ;
+    font-size:400%;
+
+    text-decoration: none;
+}
+
+div.document div.documentwrapper div.bodywrapper div.body div.section h1 {
+    font-family: 'Cardo', sans-serif;
+    color: rgb(0,0,128);
+    font-size:300%;
+}
+
+div.document div.documentwrapper div.bodywrapper div.body div.section h2 {
+    font-family: 'Cardo', sans-serif;
+    color: rgb(0,0,128);
+    font-size:200%;
+}
+
+
+div.document div.documentwrapper div.bodywrapper div.body div.section h3 {
+    font-family: 'Cardo', sans-serif;
+    color: rgb(0,0,128);
+    font-size:150%;
+}
+
+div.document div.documentwrapper div.bodywrapper div.body div.section h4 {
+    font-family: 'Cardo', sans-serif;
+    color: rgb(0,0,128);
+    font-size:125%;
+}
+
+
+div.document div.documentwrapper div.bodywrapper div.body div.section  div.note {
+    border-bottom: 1px black dotted;
+    background-color:rgb(255,248,166);
+}
+
+div.note p.first {
+    font-family: 'Cardo', sans-serif;
+
+    font-size:125%;
+
+    text-decoration: none;
+}
+
+div.sphinxsidebar {
+
+}
+
+div.sphinxsidebarwrapper ul {
+    color: rgb(255, 194, 19);
+}
+
+div.sphinxsidebarwrapper ul a {
+    /*color: rgb(255, 254, 230);*/
+    /*color: rgb(255, 194, 19);*/
+    color:rgb(255, 255, 67);
+}
+
+div.sphinxsidebarwrapper p a {
+    color: rgb(255, 254, 230);
+}
+
+blockquote {
+    background-color:rgb(245,245,245);
+    font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+}
+div.sphinxsidebar h3 {
+    font-family: 'Cabin', sans-serif;
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+div.sphinxsidebar h3 a {
+    color: #ffffff;
+}
+
+div.sphinxsidebar h4 {
+    font-family: 'Cabin', sans-serif;
+    color: #ffffff;
+    font-size: 1.3em;
+    font-weight: normal;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+div.sphinxsidebar p {
+    color: #ffffff;
+}
+
+div.sphinxsidebar p.topless {
+    margin: 5px 10px 10px 10px;
+}
+
+div.sphinxsidebar ul {
+    margin: 10px;
+    padding: 0;
+    /*color: #ffffff;*/
+    color: rgb(255, 194, 19);
+}
+
+div.sphinxsidebar a {
+    color: #98dbcc;
+}
+
+div.sphinxsidebar input {
+    border: 1px solid #98dbcc;
+    font-family: sans-serif;
+    font-size: 1em;
+}
+
+
+
+/* -- hyperlink styles ------------------------------------------------------ */
+
+a {
+    color: #355f7c;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #355f7c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* -- body styles ----------------------------------------------------------- */
+
+div.body h1,
+div.body h2,
+div.body h3,
+div.body h4,
+div.body h5,
+div.body h6 {
+    font-family: 'Cabin', sans-serif;
+    background-color: #f2f2f2;
+    font-weight: normal;
+    color: #20435c;
+    border-bottom: 1px solid #ccc;
+    margin: 20px -20px 10px -20px;
+    padding: 3px 0 3px 10px;
+}
+
+div.body h1 { margin-top: 0; font-size: 200%; }
+div.body h2 { font-size: 160%; }
+div.body h3 { font-size: 140%; }
+div.body h4 { font-size: 120%; }
+div.body h5 { font-size: 110%; }
+div.body h6 { font-size: 100%; }
+
+a.headerlink {
+    color: #c60f0f;
+    font-size: 0.8em;
+    padding: 0 4px 0 4px;
+    text-decoration: none;
+}
+
+a.headerlink:hover {
+    background-color: #c60f0f;
+    color: white;
+}
+
+div.body p, div.body dd, div.body li {
+    text-align: justify;
+    line-height: 130%;
+}
+
+div.admonition p.admonition-title + p {
+    display: inline;
+}
+
+div.admonition p {
+    margin-bottom: 5px;
+}
+
+div.admonition pre {
+    margin-bottom: 5px;
+}
+
+div.admonition ul, div.admonition ol {
+    margin-bottom: 5px;
+}
+
+div.note {
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+div.seealso {
+    background-color: #ffc;
+    border: 1px solid #ff6;
+}
+
+div.topic {
+    background-color: #eee;
+}
+
+div.warning {
+    background-color: #ffe4e4;
+    border: 1px solid #f66;
+}
+
+p.admonition-title {
+    display: inline;
+}
+
+p.admonition-title:after {
+    content: ":";
+}
+
+pre {
+    padding: 5px;
+    background-color: #eeffcc;
+    color: #333333;
+    line-height: 120%;
+    border: 1px solid #ac9;
+    border-left: none;
+    border-right: none;
+}
+
+tt {
+    background-color: #ecf0f3;
+    padding: 0 1px 0 1px;
+    font-size: 0.95em;
+}
+
+th {
+    background-color: #ede;
+}
+
+.warning tt {
+    background: #efc2c2;
+}
+
+.note tt {
+    background: #d6d6d6;
+}
+
+.viewcode-back {
+    font-family: sans-serif;
+}
+
+div.viewcode-block:target {
+    background-color: #f4debf;
+    border-top: 1px solid #ac9;
+    border-bottom: 1px solid #ac9;
+}
+
+
+
+pre
+{
+    color:white;
+    /*color:#EEEE00;
+    color:#EC7400;*/
+    /*background-color: #F0F0C7;*/
+    background-color: #000000; /*#EEEEBB;*/
+    border-bottom-color: yellow;
+    /*font-family:'Courier New', helvetica, monospace;
+    font-weight:normal;*/
+    /*font-size:120%;*/
+}
+
+
+/** This is all the pygment stuff. */
+td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+pre { line-height: 125%; }
+body .code-block-bg { background-color: #060B13 }
+body .hll { background-color: ##1F2329 }
+/*body  { background: #272822; color: #f8f8f2 }*/
+/*body .c { color: #75715e } // Comment */
+body .c { color: #f3cf98 } /* Comment */
+body .err { color: #960050; background-color: #1e0010 } /* Error */
+body .k { color: #66d9ef } /* Keyword */
+body .l { color: #ae81ff } /* Literal */
+body .n { color: #f8f8f2 } /* Name */
+body .o { color: #f92672 } /* Operator */
+body .p { color: #f8f8f2 } /* Punctuation */
+body .cm { color: #DBCB16 } /* Comment.Multiline */
+body .cp { color: #EB8AF8 } /* Comment.Preproc */
+body .c1 { color: #DBCB16 } /* Comment.Single */
+body .cs { color: #DBCB16 } /* Comment.Special */
+body .ge { font-style: italic } /* Generic.Emph */
+body .gs { font-weight: bold } /* Generic.Strong */
+body .kc { color: #66d9ef } /* Keyword.Constant */
+body .kd { color: #66d9ef } /* Keyword.Declaration */
+body .kn { color: #f92672 } /* Keyword.Namespace */
+body .kp { color: #66d9ef } /* Keyword.Pseudo */
+body .kr { color: #66d9ef } /* Keyword.Reserved */
+body .kt { color: #66d9ef } /* Keyword.Type */
+body .ld { color: #e6db74 } /* Literal.Date */
+body .m { color: #ae81ff } /* Literal.Number */
+body .s { color: #e6db74 } /* Literal.String */
+body .na { color: #a6e22e } /* Name.Attribute */
+body .nb { color: #f8f8f2 } /* Name.Builtin */
+body .nc { color: #a6e22e } /* Name.Class */
+body .no { color: #66d9ef } /* Name.Constant */
+body .nd { color: #a6e22e } /* Name.Decorator */
+body .ni { color: #f8f8f2 } /* Name.Entity */
+body .ne { color: #a6e22e } /* Name.Exception */
+body .nf { color: #a6e22e } /* Name.Function */
+body .nl { color: #f8f8f2 } /* Name.Label */
+body .nn { color: #f8f8f2 } /* Name.Namespace */
+body .nx { color: #a6e22e } /* Name.Other */
+body .py { color: #f8f8f2 } /* Name.Property */
+body .nt { color: #f92672 } /* Name.Tag */
+body .nv { color: #f8f8f2 } /* Name.Variable */
+body .ow { color: #f92672 } /* Operator.Word */
+body .w { color: #f8f8f2 } /* Text.Whitespace */
+body .mf { color: #ae81ff } /* Literal.Number.Float */
+body .mh { color: #ae81ff } /* Literal.Number.Hex */
+body .mi { color: #ae81ff } /* Literal.Number.Integer */
+body .mo { color: #ae81ff } /* Literal.Number.Oct */
+body .sb { color: #e6db74 } /* Literal.String.Backtick */
+body .sc { color: #e6db74 } /* Literal.String.Char */
+body .sd { color: #e6db74 } /* Literal.String.Doc */
+body .s2 { color: #e6db74 } /* Literal.String.Double */
+body .se { color: #ae81ff } /* Literal.String.Escape */
+body .sh { color: #e6db74 } /* Literal.String.Heredoc */
+body .si { color: #e6db74 } /* Literal.String.Interpol */
+body .sx { color: #e6db74 } /* Literal.String.Other */
+body .sr { color: #e6db74 } /* Literal.String.Regex */
+body .s1 { color: #e6db74 } /* Literal.String.Single */
+body .ss { color: #e6db74 } /* Literal.String.Symbol */
+body .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+body .vc { color: #f8f8f2 } /* Name.Variable.Class */
+body .vg { color: #f8f8f2 } /* Name.Variable.Global */
+body .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+body .il { color: #ae81ff } /* Literal.Number.Integer.Long */
