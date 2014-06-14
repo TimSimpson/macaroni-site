@@ -20,6 +20,27 @@
             News
             </h1>
 
+            <h3>June 6, 2014</h3>
+
+            <p>
+            Macaroni version 0.2.3 is out now. This version adds support for
+            the following:
+            <ul>
+
+            <li>R-Value references, making it possible to make move constructors.
+            </li>
+            <li>The export keyword.</li>
+            <li>Enums, both the old style and C++11 class versions.</li>
+            </ul>
+            Additionally, a bug in Macaroni was fixed so that ~unit's containing
+            mulitple classes will now resolve dependencies in the correct order.
+            So say you have a unit with class B which depends on class A, and
+            define them in the order of B then A. Macaroni will correctly create
+            the file with A defined first followed by B. There's still some bugs
+            to fix if you want to completely control which units your code
+            lives in but this fix goes a long way to resolving things.
+            </p>
+
             <h3>April 12, 2014</h3>
 
             <p>
