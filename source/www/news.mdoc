@@ -20,6 +20,61 @@
             News
             </h1>
 
+            <h3>January 4, 2015</h3>
+
+            <p>
+            Worked on Macaroni quite a bit recently. The latest, which I'm
+            calling Version 0.3.0 for no real reason, has the following huge
+            changes:
+            </p>
+            <ul>
+            <li>Spinning up new projects is easy now with the --newProject
+            command line argument. Just write "macaroni --newProject HelloWorld"
+            to create a directory "HelloWorld" filled with a very simple
+            project file that builds a library along with an executable and
+            unit test.</li>
+            <li>
+            Added support for the "default" and "delete" keywords when used to
+            either explicitly accept or forbid the automatic creation of a
+            constructor function.
+            </li>
+            <li>
+            Made massive changes to the C++ generation scripts. Before
+            everything was very class centric, where as now the generation
+            starts at the unit level. This actually fixed a lot of things and
+            was the culmination of work I actually started two years ago when
+            I created the whole concept of Unit Targets as the anchoring points
+            for generated source code. This was part of a general exorcism of
+            cruft code (don't worry though, there's plenty left).
+            </li>
+            <li>
+            Really improved the generation of nested classes and typedefs after
+            cleaning up the unit generation code. Before it was a bit of a crap
+            shoot where as now things are pretty consistent.
+            </li>
+            <li>
+            It's now possible to correctly add most function overload to units
+            without resorting to use of the ~block keyword! Unfortunately
+            "int main(int argc, char * argv[])" is out due to the use of
+            unsupported syntax in the type for argv, but "int main()" works
+            just fine.
+            </li>
+            <li>
+            Template parameter lists are now supported for functions and
+            classes! Currently only the "typename" keyword will work, and
+            default template arguments aren't supported, but parameter packs
+            are (!!).
+            </li>
+            <li>
+            Unfortunately, class templates can't have "overloads". This is due
+            to a design flaw in Macaroni, which I'd like to fix one day.
+            </li>
+            <li>
+            Added support for the override keyword.
+            </li>
+            </ul>
+
+
             <h3>June 6, 2014</h3>
 
             <p>
